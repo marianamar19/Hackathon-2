@@ -37,7 +37,7 @@ public class Main {
                     System.out.print("\nNombre: ");
                     nombre = sc.nextLine();
                     Contacto c = new Contacto(nombre, "");
-                    System.out.println(agenda.existeContacto(c) ? "\nEl contacto existe." : "\nEl contacto no existe.");
+                    System.out.println(agenda.existeContacto(c) ? "\nEl contacto existe" : "\nEl contacto no existe");
                     break;
                 case 3:
                     agenda.listarContactos();
