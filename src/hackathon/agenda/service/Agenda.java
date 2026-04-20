@@ -44,6 +44,18 @@ public class Agenda {
             c.getApellido() + " - " +
             c.getTelefono()
             ));
+
+    // buscar contacto por nombre
+    public void buscarContacto(String nombre) {
+        String claveNormalizada = nombre.trim().toLowerCase();
+        if (contacts.containsKey(claveNormalizada)) {
+            System.out.println("Contacto encontrado '" + nombre + "', numero: " + contacts.get(claveNormalizada).getNumero());
+        } else {
+            System.out.println("Contacto '" + nombre + "' no encontrado.");
+        }
+    }
+
+
 }
 
 // Lista todos los contactos ordenados por nombre y apellido
