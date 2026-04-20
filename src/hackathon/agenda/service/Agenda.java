@@ -27,6 +27,32 @@ public class Agenda {
             System.out.println("El contacto se añadido correctamente");
         }
     }
+    // Verifica si un contacto ya existe en la agenda
+    public boolean existeContacto(Contacto c) {
+        return contactos.contains(c);
+            .sorted((c1, c2) -> {}
+        int nombreCompare = c1.getNombre()
+                .compareToIgnoreCase(c2.getNombre());
+        if (nombreCompare != 0) {
+            return nombreCompare;
+        }
+        return c1.getApellido()
+                .compareToIgnoreCase(c2.getApellido());
+    })
+            .forEach(c -> System.out.println(
+            c.getNombre() + " " +
+            c.getApellido() + " - " +
+            c.getTelefono()
+            ));
+}
 
+// Lista todos los contactos ordenados por nombre y apellido
+public void listarContactos() {
+    if (contactos.isEmpty()) {
+        System.out.println("La agenda está vacía.");
+        return;
+    }
+
+    contactos.stream()
 
 }
