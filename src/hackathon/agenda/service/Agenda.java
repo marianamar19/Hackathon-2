@@ -54,7 +54,36 @@ public class Agenda {
             System.out.println("Contacto '" + nombre + "' no encontrado.");
         }
     }
+    // Eliminar contacto
+    public void eliminarContacto(Contacto c) {
+        boolean eliminado = false;
 
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equalsIgnoreCase(c.getNombre())) {
+                contactos.remove(contacto);
+                eliminado = true;
+                break;
+            }
+        }
+
+        if (eliminado) {
+            System.out.println("Contacto eliminado correctamente");
+        } else {
+            System.out.println("El contacto no existe");
+        }
+    }
+
+    // Verificar si la agenda está llena
+    public boolean agendaLlena() {
+        return contactos.size() >= capacidad;
+    }
+
+    // Espacios libres
+    public int espaciosLibres() {
+        return capacidad - contactos.size();
+    }
+
+}
 
 }
 
