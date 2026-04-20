@@ -1,75 +1,74 @@
 package hackathon.agenda.service;
 
+import hackathon.agenda.model.Contacto;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Agenda {
     private Set<Contacto> contactos;
     private int capacidad;
 
     public Agenda() {
-        this.contactos = 10;
-        this.capacidad = new HashSet<>();
+        this.capacidad = 10;
+        this.contactos = new HashSet<>();
     }
 
     public Agenda(int capacidad) {
         this.capacidad = capacidad;
-        this.capacidad = new HashSet<>();
+        this.contactos = new HashSet<>();
     }
 
     // añadir contactos
     public void anadirContacto(Contacto c) {
         if (agendaLlena()) {
-            System.out.println("La agenda está llena");
+            System.out.println("\nLa agenda está llena");
         } else if (existeContacto(c)) {
-            System.out.println("El nombre del contacto ya existe intenta colocando otro nombre para ese número");
+            System.out.println("\nEl nombre del contacto ya existe, no se permiten nombres iguales");
         } else {
             contactos.add(c);
-            System.out.println("El contacto se añadido correctamente");
+            System.out.println("\nEl contacto se añadido correctamente");
         }
     }
     // Verifica si un contacto ya existe en la agenda
     public boolean existeContacto(Contacto c) {
         return contactos.contains(c);
-            .sorted((c1, c2) -> {}
-        int nombreCompare = c1.getNombre()
-                .compareToIgnoreCase(c2.getNombre());
-        if (nombreCompare != 0) {
-            return nombreCompare;
-        }
-        return c1.getApellido()
-                .compareToIgnoreCase(c2.getApellido());
-    })
-            .forEach(c -> System.out.println(
-            c.getNombre() + " " +
-            c.getApellido() + " - " +
-            c.getTelefono()
-            ));
+    }
+
+    // listar contactos
+    public void listarContactos(){
+            if (contactos.isEmpty()){
+                System.out.println("\nAgenda vacia");
+            } else {
+                System.out.println("\nLista de contactos:");
+                for (Contacto contacto : contactos) {
+                    System.out.println(contacto);
+                }
+            }
+    }
 
     // buscar contacto por nombre
     public void buscarContacto(String nombre) {
-        String claveNormalizada = nombre.trim().toLowerCase();
-        if (contacts.containsKey(claveNormalizada)) {
-            System.out.println("Contacto encontrado '" + nombre + "', numero: " + contacts.get(claveNormalizada).getNumero());
-        } else {
-            System.out.println("Contacto '" + nombre + "' no encontrado.");
-        }
-    }
-    // Eliminar contacto
-    public void eliminarContacto(Contacto c) {
-        boolean eliminado = false;
+        boolean encontrado = false;
 
         for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(c.getNombre())) {
-                contactos.remove(contacto);
-                eliminado = true;
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+                System.out.println("Contacto encontrado: " + contacto.getTelefono());
+                encontrado = true;
                 break;
             }
         }
 
-        if (eliminado) {
-            System.out.println("Contacto eliminado correctamente");
+        if (!encontrado) {
+            System.out.println("\nContacto no encontrado");
+        }
+    }
+
+    // Eliminar contacto
+    public void eliminarContacto(Contacto c) {
+        if (contactos.remove(c)) {
+            System.out.println("\nContacto eliminado correctamente");
         } else {
-            System.out.println("El contacto no existe");
+            System.out.println("\nEl contacto no existe");
         }
     }
 
@@ -82,18 +81,5 @@ public class Agenda {
     public int espaciosLibres() {
         return capacidad - contactos.size();
     }
-
-}
-
-}
-
-// Lista todos los contactos ordenados por nombre y apellido
-public void listarContactos() {
-    if (contactos.isEmpty()) {
-        System.out.println("La agenda está vacía.");
-        return;
-    }
-
-    contactos.stream()
 
 }
