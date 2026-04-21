@@ -5,30 +5,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Agenda {
+    // Atrubutos
     private Set<Contacto> contactos;
     private int capacidad;
 
+    // Constructor
     public Agenda() {
         this.capacidad = 10;
         this.contactos = new HashSet<>();
     }
 
+    // Constructor con capacidad personalizada
     public Agenda(int capacidad) {
         this.capacidad = capacidad;
         this.contactos = new HashSet<>();
     }
 
-    // añadir contactos
+    // Añadir contactos
     public void anadirContacto(Contacto c) {
-        if (agendaLlena()) {
+        if (agendaLlena()) { // Llama al metodo agenda
             System.out.println("\nLa agenda está llena");
-        } else if (existeContacto(c)) {
+        } else if (existeContacto(c)) { //Llama al metodo existeContacto
             System.out.println("\nEl nombre del contacto ya existe, no se permiten nombres iguales");
         } else {
-            contactos.add(c);
+            contactos.add(c); // Aagrega el contacto c al conjunto contactos
             System.out.println("\nEl contacto se añadido correctamente");
         }
     }
+
     // Verifica si un contacto ya existe en la agenda
     public boolean existeContacto(Contacto c) {
         return contactos.contains(c);
