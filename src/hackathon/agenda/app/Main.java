@@ -29,15 +29,27 @@ public class Main {
                 case 1:
                     System.out.print("Nombre: ");
                     String nombre = sc.nextLine();
+                    System.out.print("Apellido: ");
+                    String apellido = sc.nextLine();
                     System.out.print("Teléfono: ");
                     String telefono = sc.nextLine();
-                    agenda.anadirContacto(new Contacto(nombre, telefono));
+                    try {
+                        agenda.anadirContacto(new Contacto(nombre, apellido, telefono));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("\nError: " + e.getMessage());
+                    }
                     break;
                 case 2:
                     System.out.print("\nNombre: ");
                     nombre = sc.nextLine();
-                    Contacto c = new Contacto(nombre, "");
-                    System.out.println(agenda.existeContacto(c) ? "\nEl contacto existe" : "\nEl contacto no existe");
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    try {
+                        Contacto c = new Contacto(nombre, apellido, "");
+                        System.out.println(agenda.existeContacto(c) ? "\nEl contacto existe" : "\nEl contacto no existe");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("\nError: " + e.getMessage());
+                    }
                     break;
                 case 3:
                     agenda.listarContactos();
@@ -45,12 +57,20 @@ public class Main {
                 case 4:
                     System.out.print("\nNombre: ");
                     nombre = sc.nextLine();
-                    agenda.buscarContacto(nombre);
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    agenda.buscarContacto(nombre, apellido);
                     break;
                 case 5:
                     System.out.print("\nNombre: ");
                     nombre = sc.nextLine();
-                    agenda.eliminarContacto(new Contacto(nombre, ""));
+                    System.out.print("Apellido: ");
+                    apellido = sc.nextLine();
+                    try {
+                        agenda.eliminarContacto(new Contacto(nombre, apellido, ""));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("\nError: " + e.getMessage());
+                    }
                     break;
                 case 6:
                     System.out.println(agenda.agendaLlena() ? "\nLa agenda está llena" : "\nLa agenda no está llena");

@@ -26,7 +26,7 @@ public class Agenda {
         if (agendaLlena()) { // Llama al metodo agenda
             System.out.println("\nLa agenda está llena");
         } else if (existeContacto(c)) { //Llama al metodo existeContacto
-            System.out.println("\nEl nombre del contacto ya existe, no se permiten nombres iguales");
+            System.out.println("\nEl contacto ya existe, no se permiten contactos con el mismo nombre y apellido");
         } else {
             contactos.add(c); // Aagrega el contacto c al conjunto contactos
             System.out.println("\nEl contacto se añadido correctamente");
@@ -50,13 +50,13 @@ public class Agenda {
             }
     }
 
-    // buscar contacto por nombre
-    public void buscarContacto(String nombre) {
+    // buscar contacto por nombre y apellido
+    public void buscarContacto(String nombre, String apellido) {
         boolean encontrado = false;
 
         for (Contacto contacto : contactos) {
-            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
-                System.out.println("Contacto encontrado: " + contacto.getTelefono());
+            if (contacto.getNombre().equalsIgnoreCase(nombre) && contacto.getApellido().equalsIgnoreCase(apellido)) {
+                System.out.println("\nContacto encontrado: " + contacto);
                 encontrado = true;
                 break;
             }
